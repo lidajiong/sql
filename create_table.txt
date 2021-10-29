@@ -1,0 +1,53 @@
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- Table structure for link
+-- ----------------------------
+DROP TABLE IF EXISTS `link`;
+CREATE TABLE `link`  (
+  `movieId` int(11) DEFAULT NULL,
+  `imdbId` int(11) DEFAULT NULL,
+  `tmdbId` int(11) DEFAULT NULL,
+  `linkId` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`linkId`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 55627 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for movie
+-- ----------------------------
+DROP TABLE IF EXISTS `movie`;
+CREATE TABLE `movie`  (
+  `movieId` int(11) DEFAULT NULL,
+  `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `genres` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for rating
+-- ----------------------------
+DROP TABLE IF EXISTS `rating`;
+CREATE TABLE `rating`  (
+  `userId` int(11) DEFAULT NULL,
+  `movieId` int(11) DEFAULT NULL,
+  `rating` double(255, 4) DEFAULT NULL,
+  `timestamp` datetime(6) DEFAULT NULL,
+  `ratingId` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`ratingId`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 5356 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for tag
+-- ----------------------------
+DROP TABLE IF EXISTS `tag`;
+CREATE TABLE `tag`  (
+  `tagId` int(11) NOT NULL AUTO_INCREMENT,
+  `userId` int(11) DEFAULT NULL,
+  `movieId` int(11) DEFAULT NULL,
+  `tag` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `timestamp` datetime(6) DEFAULT NULL,
+  PRIMARY KEY (`tagId`) USING BTREE,
+  INDEX `index_tag`(`tag`) USING BTREE,
+  INDEX `index_tagId`(`tagId`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 120366 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+
+SET FOREIGN_KEY_CHECKS = 1;
